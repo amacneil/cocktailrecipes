@@ -1,0 +1,51 @@
+{% extends "_layouts/cp" %}
+{% set centered = true %}
+
+{% set ingredients = blx.cocktailrecipes.getAllIngredients %}
+{% set title = "Cocktail Ingredients"|t %}
+
+{% set header %}
+    <h1>{{ title }}</h1>
+{% endset %}
+
+{% set content %}
+
+    {{ "hi there, test sentence!"|shake }}
+
+    <p id="noingredients"{% if ingredients|length %} class="hidden"{% endif %}>
+        {{ "No ingredients exist yet."|t }}
+    </p>
+
+    {% if ingredients|length %}
+        <table id="ingredients" class="data">
+            <thead>
+                <th scope="col">{{ "Name"|t }}</th>
+                <th class="thin"></th>
+            </thead>
+            <tbody>
+
+                {% for ingredient in ingredients %}
+                    <tr data-id="{{ ingredient.id }}" data-name="{{ ingredient.name|t }}">
+                        <td><a href="{{ url('cocktailrecipes/ingredients/'~ingredient.id) }}">{{ ingredient.name }}</a></td>
+                        <td><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div class="buttons">
+        <a href="{{ url('cocktailrecipes/ingredients/new') }}" class="btn add icon">{{ "New Ingredient"|t }}</a>
+    </div>
+
+{% endset %}
+
+{% set js %}
+    new Blocks.ui.AdminTable({
+        tableSelector: '#ingredients',
+        noObjectsSelector: '#noingredients',
+        deleteAction: 'cocktailrecipes/ingredients/deleteIngredient'
+    });
+{% endset %}
+{% includeJs js %}
