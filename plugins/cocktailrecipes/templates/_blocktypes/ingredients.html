@@ -1,26 +1,38 @@
-{#
-Blocks uses Twig Macros to create reusable form elements 
-that we can use throughout our templates.
+{# Blocks uses Twig Macros to create reusable form elements 
+that you can use throughout your templates.
 http://twig.sensiolabs.org/doc/tags/macro.html
 
-If we want to access all of the form macros, we can import
-the full form file: {% import "_includes/forms" as forms %}
-
-And then access the macro we want using the 'forms' prefix
-to the macro that we want to use:
-{{ forms.checkboxSelect({
-    name: name,
-    options: options,
-    values: values,
-}) }}
-
-If we want to target a single form element, we can target
-that macro specifically as we do in this template below:
-#}
+If you want to target a single form element, you can target
+that macro specifically as in the import statement here
+where we only target the checkboxSelect Form Element: #}
 {% from "_includes/forms" import checkboxSelect %}
 
+
+{# You can take a look at the form macros available in the imported
+forms file here: /blocks/app/templates/_includes/forms.html
+
+Once you've imported the checkboxSelect macro you can access that 
+macro using it's function name and passing it the parameters that
+fit our needs.  Since this is a partial template for a blocktype,
+the "name", "options", and "values" are set in the blocktype class: cocktailrecipes/blocktypes/CocktailRecipes_IngredientsBlockType.php  #}
 {{ checkboxSelect({
     name: name,
     options: options,
     values: values,
 }) }}
+
+
+{# NOTE:
+If you want to access all of the form macros, instead of just one,
+you can import the full form file: 
+{% import "_includes/forms" as forms %}
+
+When you import the full file, you cannot access the macro function
+directly as we did above.  You would need to access the macro you 
+want using the 'forms' prefix before the function you want to use:
+{{ forms.checkboxSelect({
+    name: name,
+    options: options,
+    values: values,
+}) }}
+#}
