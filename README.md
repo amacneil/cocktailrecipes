@@ -12,7 +12,7 @@ Obviously there are many things in this plugin which could be done differently f
 this simple. However, we prefer to do things the most complete way possible, to give you a
 non-trivial working example.
 
-## Compontents
+## Components
 
 Cocktail Recipes provides examples of the following Blocks components:
 
@@ -36,6 +36,12 @@ To run the tests, run the following commands:
     cd plugins/cocktailrecipes
     composer update --dev
     vendor/bin/phpunit
+
+## Coding Standards
+
+All code follows the standard PHP [PSR-2 coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+This is being adopted by a large number of PHP frameworks, to ensure consistency in the PHP community.
+The coding style can easily be verified/fixed by running [php-cs-fixer](http://cs.sensiolabs.org/).
 
 ## License
 
