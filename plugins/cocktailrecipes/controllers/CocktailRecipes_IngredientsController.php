@@ -28,11 +28,11 @@ class CocktailRecipes_IngredientsController extends BaseController
         $model->setAttributes($attributes);
 
         if (blx()->cocktailRecipes->saveIngredient($model)) {
-            blx()->user->setNotice(Blocks::t('Ingredient saved.'));
+            blx()->userSession->setNotice(Blocks::t('Ingredient saved.'));
 
             return $this->redirectToPostedUrl(array('ingredientId' => $model->getAttribute('id')));
         } else {
-            blx()->user->setError(Blocks::t("Couldn't save ingredient."));
+            blx()->userSession->setError(Blocks::t("Couldn't save ingredient."));
 
             return $this->renderRequestedTemplate(array('ingredient' => $model));
         }
