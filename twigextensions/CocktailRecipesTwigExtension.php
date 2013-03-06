@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 use Twig_Extension;
 use Twig_Filter_Method;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
@@ -10,20 +10,20 @@ class CocktailRecipes_IngredientsControllerTest extends PHPUnit_Framework_TestCa
     public function setUp()
     {
         // unfortunately we need to stub out some methods on parent class
-        $this->controller = m::mock('Blocks\CocktailRecipes_IngredientsController[redirectToPostedUrl,renderRequestedTemplate,returnJson]');
+        $this->controller = m::mock('Craft\CocktailRecipes_IngredientsController[redirectToPostedUrl,renderRequestedTemplate,returnJson]');
 
         // inject service dependencies
-        $this->cocktailRecipes = m::mock('Blocks\CocktailRecipesService');
+        $this->cocktailRecipes = m::mock('Craft\CocktailRecipesService');
         $this->cocktailRecipes->shouldReceive('getIsInitialized')->andReturn(true);
-        blx()->setComponent('cocktailRecipes', $this->cocktailRecipes);
+        craft()->setComponent('cocktailRecipes', $this->cocktailRecipes);
 
-        $this->user = m::mock('Blocks\UsersService');
+        $this->user = m::mock('Craft\UsersService');
         $this->user->shouldReceive('getIsInitialized')->andReturn(true);
-        blx()->setComponent('user', $this->user);
+        craft()->setComponent('user', $this->user);
 
-        $this->request = m::mock('Blocks\HttpRequestService');
+        $this->request = m::mock('Craft\HttpRequestService');
         $this->request->shouldReceive('getIsInitialized')->andReturn(true);
-        blx()->setComponent('request', $this->request);
+        craft()->setComponent('request', $this->request);
     }
 
     public function testSaveIngedient()
@@ -34,7 +34,7 @@ class CocktailRecipes_IngredientsControllerTest extends PHPUnit_Framework_TestCa
         $this->request->shouldReceive('getPost')->with('ingredientId')->once()
             ->andReturn(5);
 
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $this->cocktailRecipes->shouldReceive('getIngredientById')->with(5)->once()
             ->andReturn($mockModel);
 
@@ -62,7 +62,7 @@ class CocktailRecipes_IngredientsControllerTest extends PHPUnit_Framework_TestCa
         $this->request->shouldReceive('getPost')->with('ingredientId')->once()
             ->andReturn(null);
 
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $this->cocktailRecipes->shouldReceive('newIngredient')->once()
             ->andReturn($mockModel);
 
@@ -90,7 +90,7 @@ class CocktailRecipes_IngredientsControllerTest extends PHPUnit_Framework_TestCa
         $this->request->shouldReceive('getPost')->with('ingredientId')->once()
             ->andReturn(5);
 
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $this->cocktailRecipes->shouldReceive('getIngredientById')->with(5)->once()
             ->andReturn($mockModel);
 

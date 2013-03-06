@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 /**
  * Cocktail Recipes Variable provides access to database objects from templates
@@ -14,7 +14,7 @@ class CocktailRecipesVariable
      */
     public function getAllIngredients()
     {
-        return blx()->cocktailRecipes->getAllIngredients();
+        return craft()->cocktailRecipes->getAllIngredients();
     }
 
     /**
@@ -25,6 +25,6 @@ class CocktailRecipesVariable
      */
     public function getIngredientById($id)
     {
-        return blx()->cocktailRecipes->getIngredientById($id);
+        return craft()->cocktailRecipes->getIngredientById($id);
     }
 }

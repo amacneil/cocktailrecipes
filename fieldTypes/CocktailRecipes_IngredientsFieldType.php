@@ -1,24 +1,24 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 /**
- * Ingredients Blocktype
+ * Ingredients Fieldtype
  *
  * Allows entries to select associated ingredients
  */
-class CocktailRecipes_IngredientsBlockType extends BaseBlockType
+class CocktailRecipes_IngredientsFieldType extends BaseFieldType
 {
     /**
-     * Get the name of this blocktype
+     * Get the name of this fieldtype
      */
     public function getName()
     {
-        return Blocks::t('Cocktail Ingredients');
+        return Craft::t('Cocktail Ingredients');
     }
 
     /**
-     * Get this blocktype's column type.
+     * Get this fieldtype's column type.
      *
      * @return mixed
      */
@@ -29,7 +29,7 @@ class CocktailRecipes_IngredientsBlockType extends BaseBlockType
     }
 
     /**
-     * Get this blocktype's form HTML
+     * Get this fieldtype's form HTML
      *
      * @param  string $name
      * @param  mixed  $value
@@ -38,9 +38,9 @@ class CocktailRecipes_IngredientsBlockType extends BaseBlockType
     public function getInputHtml($name, $value)
     {
         // call our service layer to get a current list of ingredients
-        $ingredients = blx()->cocktailRecipes->getAllIngredients();
+        $ingredients = craft()->cocktailRecipes->getAllIngredients();
 
-        return blx()->templates->render('cocktailrecipes/_blocktypes/ingredients', array(
+        return craft()->templates->render('cocktailrecipes/_fieldtypes/ingredients', array(
             'name'      => $name,
             'options'   => $ingredients,
             'values'    => $value,

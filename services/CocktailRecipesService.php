@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 /**
  * Cocktail Recipes Service
@@ -74,7 +74,7 @@ class CocktailRecipesService extends BaseApplicationComponent
     {
         if ($id = $model->getAttribute('id')) {
             if (null === ($record = $this->ingredientRecord->findByPk($id))) {
-                throw new Exception(Blocks::t('Can\'t find ingredient with ID "{id}"', array('id' => $id)));
+                throw new Exception(Craft::t('Can\'t find ingredient with ID "{id}"', array('id' => $id)));
             }
         } else {
             $record = $this->ingredientRecord->create();

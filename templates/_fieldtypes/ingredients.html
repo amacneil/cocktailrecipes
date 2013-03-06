@@ -1,4 +1,4 @@
-{# Blocks uses Twig Macros to create reusable form elements 
+{# Craft uses Twig Macros to create reusable form elements
 that you can use throughout your templates.
 http://twig.sensiolabs.org/doc/tags/macro.html
 
@@ -9,12 +9,12 @@ where we only target the checkboxSelect Form Element: #}
 
 
 {# You can take a look at the form macros available in the imported
-forms file here: /blocks/app/templates/_includes/forms.html
+forms file here: /craft/app/templates/_includes/forms.html
 
-Once you've imported the checkboxSelect macro you can access that 
+Once you've imported the checkboxSelect macro you can access that
 macro using it's function name and passing it the parameters that
-fit our needs.  Since this is a partial template for a blocktype,
-the "name", "options", and "values" are set in the blocktype class: cocktailrecipes/blocktypes/CocktailRecipes_IngredientsBlockType.php  #}
+fit our needs.  Since this is a partial template for a fieldtype,
+the "name", "options", and "values" are set in the fieldtype class: cocktailrecipes/fieldtypes/CocktailRecipes_IngredientsFieldType.php  #}
 {{ checkboxSelect({
     name: name,
     options: options,
@@ -24,11 +24,11 @@ the "name", "options", and "values" are set in the blocktype class: cocktailreci
 
 {# NOTE:
 If you want to access all of the form macros, instead of just one,
-you can import the full form file: 
+you can import the full form file:
 {% import "_includes/forms" as forms %}
 
 When you import the full file, you cannot access the macro function
-directly as we did above.  You would need to access the macro you 
+directly as we did above.  You would need to access the macro you
 want using the 'forms' prefix before the function you want to use:
 {{ forms.checkboxSelect({
     name: name,

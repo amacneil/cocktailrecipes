@@ -1,12 +1,12 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 class CocktailRecipesPlugin extends BasePlugin
 {
     public function getName()
     {
-        return Blocks::t('Cocktail Recipes');
+        return Craft::t('Cocktail Recipes');
     }
 
     public function getVersion()
@@ -45,7 +45,7 @@ class CocktailRecipesPlugin extends BasePlugin
      */
     public function hookAddTwigExtension()
     {
-        Blocks::import('plugins.cocktailrecipes.twigextensions.CocktailRecipesTwigExtension');
+        Craft::import('plugins.cocktailrecipes.twigextensions.CocktailRecipesTwigExtension');
 
         return new CocktailRecipesTwigExtension();
     }
@@ -64,7 +64,7 @@ class CocktailRecipesPlugin extends BasePlugin
         );
 
         foreach ($ingredients as $ingredient) {
-            blx()->db->createCommand()->insert('cocktailrecipes_ingredients', $ingredient);
+            craft()->db->createCommand()->insert('cocktailrecipes_ingredients', $ingredient);
         }
     }
 }

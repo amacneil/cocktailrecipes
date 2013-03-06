@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
@@ -9,7 +9,7 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->ingredientRecord = m::mock('Blocks\CocktailRecipes_IngredientRecord');
+        $this->ingredientRecord = m::mock('Craft\CocktailRecipes_IngredientRecord');
         $this->service = new CocktailRecipesService($this->ingredientRecord);
     }
 
@@ -17,14 +17,14 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->service->newIngredient();
 
-        $this->assertInstanceOf('Blocks\CocktailRecipes_IngredientModel', $result);
+        $this->assertInstanceOf('Craft\CocktailRecipes_IngredientModel', $result);
     }
 
     public function testNewIngredientWithAttributes()
     {
         $result = $this->service->newIngredient(array('id' => 5));
 
-        $this->assertInstanceOf('Blocks\CocktailRecipes_IngredientModel', $result);
+        $this->assertInstanceOf('Craft\CocktailRecipes_IngredientModel', $result);
         $this->assertEquals(5, $result->id);
     }
 
@@ -39,14 +39,14 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
         $results = $this->service->getAllIngredients();
 
         $this->assertEquals(2, count($results));
-        $this->assertInstanceOf('Blocks\CocktailRecipes_IngredientModel', $results[5]);
+        $this->assertInstanceOf('Craft\CocktailRecipes_IngredientModel', $results[5]);
     }
 
     public function testGetIngredientById()
     {
         $attributes = array('id' => 5);
 
-        $mockRecord = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockRecord = m::mock('Craft\CocktailRecipes_IngredientModel');
         $this->ingredientRecord
             ->shouldReceive('findByPk')->with(5)
             ->andReturn($mockRecord);
@@ -55,7 +55,7 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
 
         $result = $this->service->getIngredientById(5);
 
-        $this->assertInstanceOf('Blocks\CocktailRecipes_IngredientModel', $result);
+        $this->assertInstanceOf('Craft\CocktailRecipes_IngredientModel', $result);
         $this->assertEquals(5, $result->id);
     }
 
@@ -70,10 +70,10 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
 
     public function testSaveIngredient()
     {
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $mockModel->shouldReceive('getAttribute')->with('id')->once()->andReturn(5);
 
-        $mockRecord = m::mock('Blocks\CocktailRecipes_IngredientRecord');
+        $mockRecord = m::mock('Craft\CocktailRecipes_IngredientRecord');
         $this->ingredientRecord->shouldReceive('findByPk')->with(5)->once()
             ->andReturn($mockRecord);
 
@@ -92,14 +92,14 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Blocks\Exception
+     * @expectedException Craft\Exception
      */
     public function testSaveIngredientNotFound()
     {
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $mockModel->shouldReceive('getAttribute')->with('id')->once()->andReturn(5);
 
-        $mockRecord = m::mock('Blocks\CocktailRecipes_IngredientRecord');
+        $mockRecord = m::mock('Craft\CocktailRecipes_IngredientRecord');
         $this->ingredientRecord->shouldReceive('findByPk')->with(5)->once()
             ->andReturn(null);
 
@@ -108,10 +108,10 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
 
     public function testSaveIngredientInvalid()
     {
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $mockModel->shouldReceive('getAttribute')->with('id')->once()->andReturn(5);
 
-        $mockRecord = m::mock('Blocks\CocktailRecipes_IngredientRecord');
+        $mockRecord = m::mock('Craft\CocktailRecipes_IngredientRecord');
         $this->ingredientRecord->shouldReceive('findByPk')->with(5)->once()
             ->andReturn($mockRecord);
 
@@ -131,10 +131,10 @@ class CocktailRecipesServiceTest extends PHPUnit_Framework_TestCase
 
     public function testSaveIngredientNewRecord()
     {
-        $mockModel = m::mock('Blocks\CocktailRecipes_IngredientModel');
+        $mockModel = m::mock('Craft\CocktailRecipes_IngredientModel');
         $mockModel->shouldReceive('getAttribute')->with('id')->once()->andReturn(null);
 
-        $mockRecord = m::mock('Blocks\CocktailRecipes_IngredientRecord');
+        $mockRecord = m::mock('Craft\CocktailRecipes_IngredientRecord');
         $this->ingredientRecord->shouldReceive('create')->once()
             ->andReturn($mockRecord);
 

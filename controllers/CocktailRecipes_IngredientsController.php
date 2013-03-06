@@ -1,6 +1,6 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 /**
  * Ingredients Controller
@@ -18,21 +18,21 @@ class CocktailRecipes_IngredientsController extends BaseController
     {
         $this->requirePostRequest();
 
-        if ($id = blx()->request->getPost('ingredientId')) {
-            $model = blx()->cocktailRecipes->getIngredientById($id);
+        if ($id = craft()->request->getPost('ingredientId')) {
+            $model = craft()->cocktailRecipes->getIngredientById($id);
         } else {
-            $model = blx()->cocktailRecipes->newIngredient($id);
+            $model = craft()->cocktailRecipes->newIngredient($id);
         }
 
-        $attributes = blx()->request->getPost('ingredient');
+        $attributes = craft()->request->getPost('ingredient');
         $model->setAttributes($attributes);
 
-        if (blx()->cocktailRecipes->saveIngredient($model)) {
-            blx()->userSession->setNotice(Blocks::t('Ingredient saved.'));
+        if (craft()->cocktailRecipes->saveIngredient($model)) {
+            craft()->userSession->setNotice(Craft::t('Ingredient saved.'));
 
             return $this->redirectToPostedUrl(array('ingredientId' => $model->getAttribute('id')));
         } else {
-            blx()->userSession->setError(Blocks::t("Couldn't save ingredient."));
+            craft()->userSession->setError(Craft::t("Couldn't save ingredient."));
 
             return $this->renderRequestedTemplate(array('ingredient' => $model));
         }
@@ -48,8 +48,8 @@ class CocktailRecipes_IngredientsController extends BaseController
         $this->requirePostRequest();
         $this->requireAjaxRequest();
 
-        $id = blx()->request->getRequiredPost('id');
-        blx()->cocktailRecipes->deleteIngredientById($id);
+        $id = craft()->request->getRequiredPost('id');
+        craft()->cocktailRecipes->deleteIngredientById($id);
 
         $this->returnJson(array('success' => true));
     }

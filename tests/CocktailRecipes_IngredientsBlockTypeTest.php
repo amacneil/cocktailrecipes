@@ -1,29 +1,29 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
 
-class CocktailRecipes_IngredientsBlockTypeTest extends PHPUnit_Framework_TestCase
+class CocktailRecipes_IngredientsFieldTypeTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->blocktype = new CocktailRecipes_IngredientsBlockType();
+        $this->fieldtype = new CocktailRecipes_IngredientsFieldType();
 
         // inject service dependencies
-        $this->cocktailRecipes = m::mock('Blocks\CocktailRecipesService');
+        $this->cocktailRecipes = m::mock('Craft\CocktailRecipesService');
         $this->cocktailRecipes->shouldReceive('getIsInitialized')->andReturn(true);
-        blx()->setComponent('cocktailRecipes', $this->cocktailRecipes);
+        craft()->setComponent('cocktailRecipes', $this->cocktailRecipes);
 
-        $this->templates = m::mock('Blocks\TemplatesService');
+        $this->templates = m::mock('Craft\TemplatesService');
         $this->templates->shouldReceive('getIsInitialized')->andReturn(true);
-        blx()->setComponent('templates', $this->templates);
+        craft()->setComponent('templates', $this->templates);
     }
 
     public function testGetName()
     {
-        $result = $this->blocktype->getName();
+        $result = $this->fieldtype->getName();
 
         $this->assertInternalType('string', $result);
         $this->assertNotEmpty($result);

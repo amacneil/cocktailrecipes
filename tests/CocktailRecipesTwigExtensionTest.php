@@ -1,11 +1,11 @@
 <?php
 
-namespace Blocks;
+namespace Craft;
 
 use PHPUnit_Framework_TestCase;
 
 // Ensure Twig classes are loaded
-blx()->templates->registerTwigAutoloader();
+craft()->templates->registerTwigAutoloader();
 
 class CocktailRecipesTwigExtensionTest extends PHPUnit_Framework_TestCase
 {
