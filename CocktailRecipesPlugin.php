@@ -36,7 +36,7 @@ class CocktailRecipesPlugin extends BasePlugin
     {
         return array(
             'cocktailrecipes\/ingredients\/new' => 'cocktailrecipes/ingredients/_edit',
-            'cocktailrecipes\/ingredients\/(?P<recipeId>\d+)' => 'cocktailrecipes/ingredients/_edit',
+            'cocktailrecipes\/ingredients\/(?P<ingredientId>\d+)' => 'cocktailrecipes/ingredients/_edit',
         );
     }
 
