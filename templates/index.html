@@ -1,12 +1,8 @@
 {% extends "_layouts/cp" %}
 {% set centered = true %}
 
-{% set ingredients = blx.cocktailrecipes.getAllIngredients %}
+{% set ingredients = craft.cocktailrecipes.getAllIngredients %}
 {% set title = "Cocktail Ingredients"|t %}
-
-{% set header %}
-    <h1>{{ title }}</h1>
-{% endset %}
 
 {% set content %}
 

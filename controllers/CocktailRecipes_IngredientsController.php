@@ -34,7 +34,7 @@ class CocktailRecipes_IngredientsController extends BaseController
         } else {
             craft()->userSession->setError(Craft::t("Couldn't save ingredient."));
 
-            return $this->renderRequestedTemplate(array('ingredient' => $model));
+            craft()->urlManager->setRouteVariables(array('ingredient' => $model));
         }
     }
 
