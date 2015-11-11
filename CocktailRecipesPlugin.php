@@ -32,7 +32,7 @@ class CocktailRecipesPlugin extends BasePlugin
     /**
      * Register control panel routes
      */
-    public function hookRegisterCpRoutes()
+    public function registerCpRoutes()
     {
         return array(
             'cocktailrecipes\/ingredients\/new' => 'cocktailrecipes/ingredients/_edit',
@@ -43,7 +43,7 @@ class CocktailRecipesPlugin extends BasePlugin
     /**
      * Register twig extension
      */
-    public function hookAddTwigExtension()
+    public function addTwigExtension()
     {
         Craft::import('plugins.cocktailrecipes.twigextensions.CocktailRecipesTwigExtension');
 
